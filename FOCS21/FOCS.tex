@@ -552,7 +552,6 @@ Builds on Luks $2^{O(n)}$-hypergraph isomorphism, FOCS `99.
 \draw[-,dashed] (ss) to[bend right=30] (math);
 \draw[-,dashed] (abel) to[bend right=30] (data);
 \draw[-,dashed] (ss) to[bend right=30] (data);
-\draw[-,dashed] (color) to[bend right=30] (data);
 
 \draw[-,dashed] (AT) to[bend left=30] (math);
 
@@ -560,23 +559,210 @@ Builds on Luks $2^{O(n)}$-hypergraph isomorphism, FOCS `99.
 
 
 \visible<3->{
-    \node[fill=red!20,text width=3cm] (TG) at (8,3) {\textbf{Tame Genus}\\ Brooksbank-Maglione-W. `16};    
+    \node[fill=red!20,text width=3cm] (TG) at (8,4) {\textbf{Tame Genus}\\ Brooksbank-Maglione-W. `16};    
+\node[fill=brown!20,text width=3cm] (BQ) at (4,3) {\textbf{AbelTower}\\Babai-Qiao};
+\node[fill=brown!20,text width=3cm] (GQ) at (4,1.5) {\textbf{Extensions}\\Grochow-Qiao};
 
     \node[shade, left color=blue!30, right color=red!30,text width=3cm] (color) at (4,-2) {\textbf{Tensor Individualization}\\Li-Qiao FOCS17};
     \node[shade, left color=blue!30, right color=red!30,text width=3cm] (cube) at (4,0) {\textbf{Cube free}\\ Dietrich-W. JoA 19};
     
-\node[fill=red!20,text width=3cm] (W) at (8,-2) {\textbf{Exceptional}\\ W. ToC 19};
-\node[fill=red!20,text width=3cm] (W) at (8,0) {\textbf{Exceptional}\\ Brachter-Schweitzer LICS20};
+\node[fill=red!20,text width=3cm] (W) at (8,0) {\textbf{Exceptional}\\ W. ToC 19};
+\node[fill=red!20,text width=3cm] (BS) at (8,-2) {\textbf{Exceptional}\\ Brachter-Schweitzer LICS20};
+%\draw[-,dashed] (color) to[bend right=30] (data);
 
-\draw[-,dashed] (cube) to[bend right=30] (data);
-\draw[-,dashed] (W) to[bend left=30] (math);
-\draw[-,dashed] (TG) to[bend right=30] (math);
+%\draw[-,dashed] (cube) to[bend right=30] (data);
+% \draw[-,dashed] (W) to[bend left=30] (math);
+% \draw[-,dashed] (TG) to[bend right=30] (math);
+\draw[->] (AT) to (color);
+\draw[->] (AT) to (TG);
+\draw[->] (AT) to (W);
+\draw[->] (ss) to (BQ);
+\draw[->] (ss) to (GQ);
+\draw[->] (abel) to (BQ);
+\draw[->] (abel) to (GQ);
 };
 
 \end{tikzpicture}
 
     
 \end{frame}
+
+\section{Group Isomorphism of most orders}
+
+\begin{frame}{Divide and conquer}
+
+Isomorphism of $G=A\times B$, i.e.
+\[(a,b)(\tilde{a},\tilde{b}) = (a\tilde{a},b\tilde{b})\] reduces to isomorphism
+of $A$ and $B$ in parallel.\footnote{Technical detail: decompose maximally and
+adjust non-unique decompositions by Krull-Schmidt; see W. 2008.}
+\pause
+
+Isomorphism of $G=A\ltimes_{\theta} B$, i.e.
+\[(a,b)(\tilde{a},\tilde{b})=(a\tilde{a},\theta(\tilde{a})(b)\tilde{b})\]
+reduces to isomorphism of $A$ and $B$
+sequentially, plus adjusting $\theta$.\footnote{Lemma~2.1}
+
+\end{frame}
+
+% \begin{frame}{Factorization}
+% $|A|=p_1^{e_1}\cdots p_{\ell}^{e_{\ell}}$
+
+% \begin{block}{Fact}
+%     $A$ abelian implies $A=P_1\times \cdots \times P_{\ell}$ with $|P_i|=p_i^{e_i}$.
+% \end{block}
+
+% \begin{block}{Fact}
+%     $A$ a ring implies $A=P_1\times \cdots \times P_{\ell}$ with $|P_i|=p_i^{e_i}$.
+% \end{block}
+
+% \begin{block}{Fact}
+%     $A$ Lie algebra implies $A=P_1\times \cdots \times P_{\ell}$ with $|P_i|=p_i^{e_i}$.
+% \end{block}
+
+
+% \begin{block}{Almost fact}
+%     $A$ a group then $A$ comes close to 
+%     $P_1\times \cdots \times P_{\ell}$ with $|P_i|=p_i^{e_i}$.
+% \end{block}
+
+% \end{frame}
+
+
+\begin{frame}{Division Graph: Erd\H{o}s-P\'{a}lfy}
+
+Factor $n$ into a \emph{graph} $\Gamma(n)$.  \\
+Edge $(p_i^{e_i},p_j^{e_j})$
+where $p_i|p_j^k-1$ for some $k\leq e_j$, \& symmetrically.  
+
+\begin{block}{Erd\H{o}s-P\'{a}lfy, 1999}
+    A group $G$ of order $n$ factors as 
+\[N_1\times \cdots \times N_{\ell},\] 
+$|N_i|=n_i$, order of connected components of $\Gamma(n)$.
+\end{block}
+
+\pause
+
+\begin{block}{Example $n=1785$}
+\begin{center}
+\begin{tikzpicture}
+\node[circle,draw] (3) at (0,0) {$3$};
+\node[circle,draw] (5) at (1,0) {$5$};
+\node[circle,draw] (7) at (0,1) {$7$};
+\node[circle,draw] (17) at (1,1) {$17$};
+
+\draw[-,thick] (3) to (7);
+
+\node at (6,1) {$|G|=n\Rightarrow N_{3\cdot 7}\times N_5\times N_{17}$};
+\end{tikzpicture}
+\end{center}
+\end{block}
+
+
+\end{frame}
+    
+\begin{frame}{Extending implications}
+
+Factor $n$ into a \emph{direct hypergraph} $\mathcal{H}(n)$.  (i) \emph{Oriented}
+Erd\H{o}s-P\'{a}lfy \emph{hyper-}edges, (ii) exceptions for 
+finite nonabelian simple groups.
+
+\begin{block}{Proposition}
+    A group $G$ of order $n$ factors as 
+\[N_0\ltimes (N_1\ltimes \cdots \ltimes N_{\ell}),\] 
+$|N_i|=n_i$, where $n_i$ is order of interconnected components of $\mathcal{H}(n)$. 
+\end{block}
+
+\pause
+\begin{block}{Example $n=5,810,340$}
+\begin{tikzpicture}
+\node[circle,draw] (2) at (0,-1) {$2^2$};
+\node[circle,draw] (3) at (0,1) {$3$};
+\node[circle,draw] (5) at (-1.5,0) {$5$};
+\node[circle,draw] (179) at (2,1) {$179$};
+\node[circle,draw] (547) at (2,-1) {$547$};
+
+\draw[->,thick] (2) to[bend right=30]  (3);
+\draw[->,thick] (2) to[bend left=30]  (5);
+\draw[->,thick] (2) to[bend right=20] (179);
+\draw[->,thick] (2) to[bend right=20] (547);
+
+\draw[->,thick] (5) to (-0.5,0) to[bend right=30] (3);
+\draw[->,thick] (-0.5,0) to[bend left=30] (2);
+
+\draw[->,thick] (3) to[bend left=30] (2);
+
+
+\node at (6,1) {$|G|=n\Rightarrow N_{60}\ltimes (N_{179}\times N_{547})$};
+
+\end{tikzpicture}
+\end{block}
+
+
+\end{frame}
+
+\begin{frame}{Most Orders}
+
+\begin{center}
+\begin{tikzpicture}
+
+\fill[color=black!20,rounded corners] (-2.5,2) rectangle (1,-2);
+\fill[color=blue!20,rounded corners] (1,2) rectangle (7,-2);
+
+\node[circle,draw] (2) at (0,-1) {$p_1^{e_1}$};
+\node[circle,draw] (3) at (0,1) {$p_2^{e_2}$};
+\node[circle,draw] (5) at (-1.5,0) {$p_m^{e_{m}}$};
+\node[circle,draw] (179) at (3,1) {$p_{m+1}$};
+\node[circle,draw] (547) at (3,-1) {$p_{\ell}$};
+\node[circle,draw] (1949) at (4,0.5) {$p_{k}$};
+\node[circle,draw] (7893) at (5,-0.5) {$p_{j}$};
+
+
+
+\draw[->,thick] (2) to[bend right=30]  (3);
+\draw[->,thick] (2) to[bend left=30]  (5);
+\draw[->,thick] (2) to[bend right=20] (179);
+\draw[->,thick] (2) to[bend right=20] (547);
+
+\draw[->,thick] (5) to (-0.5,0) to[bend right=30] (3);
+\draw[->,thick] (-0.5,0) to[bend left=30] (2);
+
+\draw[->,thick] (3) to[bend left=30] (2);
+
+\draw[->,thick] (3) to[bend right=20] (7893);
+
+\visible<2->{
+\node[color=red] at (-1,2.25) {Hard Group Theory};
+\node[color=red] at (4,2.25) {Hard Number Theory};
+};
+
+\visible<3->{
+\node[color=csugreen] at (-1,-2.25) {Tiny Numbers};
+\node[color=csugreen] at (4,-2.25) {Cyclic Groups};
+\node at (2.5,-4) {$G=H\ltimes (\mathbb{Z}_{p_{m+1}}\times\cdots \times \mathbb{Z}_{p_{\ell}})$};
+};
+
+
+\end{tikzpicture}    
+\end{center}
+
+\end{frame}
+
+% \begin{frame}{}
+% \begin{itemize}
+%     \item Factor $n=ab$ where prime $p|n$, $p\geq\log \log n$ and not exceptional\footnote{primes strongly connected or involved in identifying a nonabelian simple group} then $p|b$;
+%     otherwise $p|a$.
+    
+%     \item Factor $G=H\ltimes_{\theta} B$ with prime divisors $p>\log \log n$ dividing
+%     $|B|$ but not $|H|$ (unless exceptional divisor of finite simple groups).
+%     Likewise decompose $\tilde{G}=\tilde{H}\ltimes_{\tilde{\theta}} \tilde{B}$.
+
+%     \item Brute-force decide $H\cong \tilde{H}$.
+%     \item Canonical isomorphism $B\cong \mathbb{Z}_b\cong \tilde{B}$ by Group Theory.
+%     \item Adjust $\theta$ to match $\tilde{\theta}$ if possible.
+
+% \end{itemize}
+% \end{frame}
+
 
 %==============================================================================
 \section{Is it a Group Table?}
@@ -858,190 +1044,17 @@ Nearly Quadratic-time $\tilde{O}(n^4)$ on multi-tape Turing Machine (TM).
 
 % \end{frame}
 
-
-\section{Group Isomorphism of most orders}
-
-\begin{frame}{Divide and conquer}
-
-Isomorphism of $G=A\times B$, i.e.
-\[(a,b)(\tilde{a},\tilde{b}) = (a\tilde{a},b\tilde{b})\] reduces to isomorphism
-of $A$ and $B$ in parallel.\footnote{Technical detail: decompose maximally and
-adjust non-unique decompositions by Krull-Schmidt; see W. 2008.}
-\pause
-
-Isomorphism of $G=A\ltimes_{\theta} B$, i.e.
-\[(a,b)(\tilde{a},\tilde{b})=(a\tilde{a},\theta(\tilde{a})(b)\tilde{b})\]
-reduces to isomorphism of $A$ and $B$
-sequentially, plus adjusting $\theta$.\footnote{Lemma~2.1}
-
-\end{frame}
-
-% \begin{frame}{Factorization}
-% $|A|=p_1^{e_1}\cdots p_{\ell}^{e_{\ell}}$
-
-% \begin{block}{Fact}
-%     $A$ abelian implies $A=P_1\times \cdots \times P_{\ell}$ with $|P_i|=p_i^{e_i}$.
-% \end{block}
-
-% \begin{block}{Fact}
-%     $A$ a ring implies $A=P_1\times \cdots \times P_{\ell}$ with $|P_i|=p_i^{e_i}$.
-% \end{block}
-
-% \begin{block}{Fact}
-%     $A$ Lie algebra implies $A=P_1\times \cdots \times P_{\ell}$ with $|P_i|=p_i^{e_i}$.
-% \end{block}
-
-
-% \begin{block}{Almost fact}
-%     $A$ a group then $A$ comes close to 
-%     $P_1\times \cdots \times P_{\ell}$ with $|P_i|=p_i^{e_i}$.
-% \end{block}
-
-% \end{frame}
-
-
-\begin{frame}{Division Graph: Erd\H{o}s-P\'{a}lfy}
-
-Factor $n$ into a \emph{graph} $\Gamma(n)$.  \\
-Edge $(p_i^{e_i},p_j^{e_j})$
-where $p_i|p_j^k-1$ for some $k\leq e_j$, \& symmetrically.  
-
-\begin{block}{Erd\H{o}s-P\'{a}lfy, 1999}
-    A group $G$ of order $n$ factors as 
-\[N_1\times \cdots \times N_{\ell},\] 
-$|N_i|=n_i$, order of connected components of $\Gamma(n)$.
-\end{block}
-
-\pause
-
-\begin{block}{Example $n=1785$}
-\begin{center}
-\begin{tikzpicture}
-\node[circle,draw] (3) at (0,0) {$3$};
-\node[circle,draw] (5) at (1,0) {$5$};
-\node[circle,draw] (7) at (0,1) {$7$};
-\node[circle,draw] (17) at (1,1) {$17$};
-
-\draw[-,thick] (3) to (7);
-
-\node at (6,1) {$|G|=n\Rightarrow N_{3\cdot 7}\times N_5\times N_{17}$};
-\end{tikzpicture}
-\end{center}
-\end{block}
-
-
-\end{frame}
-    
-\begin{frame}{Extending implications}
-
-Factor $n$ into a \emph{direct hypergraph} $\mathcal{H}(n)$.  (i) \emph{Oriented}
-Erd\H{o}s-P\'{a}lfy \emph{hyper-}edges, (ii) exceptions for 
-finite nonabelian simple groups.
-
-\begin{block}{Proposition}
-    A group $G$ of order $n$ factors as 
-\[N_0\ltimes (N_1\ltimes \cdots \ltimes N_{\ell}),\] 
-$|N_i|=n_i$, where $n_i$ is order of interconnected components of $\mathcal{H}(n)$. 
-\end{block}
-
-\pause
-\begin{block}{Example $n=5,810,340$}
-\begin{tikzpicture}
-\node[circle,draw] (2) at (0,-1) {$2^2$};
-\node[circle,draw] (3) at (0,1) {$3$};
-\node[circle,draw] (5) at (-1.5,0) {$5$};
-\node[circle,draw] (179) at (2,1) {$179$};
-\node[circle,draw] (547) at (2,-1) {$547$};
-
-\draw[->,thick] (2) to[bend right=30]  (3);
-\draw[->,thick] (2) to[bend left=30]  (5);
-\draw[->,thick] (2) to[bend right=20] (179);
-\draw[->,thick] (2) to[bend right=20] (547);
-
-\draw[->,thick] (5) to (-0.5,0) to[bend right=30] (3);
-\draw[->,thick] (-0.5,0) to[bend left=30] (2);
-
-\draw[->,thick] (3) to[bend left=30] (2);
-
-
-\node at (6,1) {$|G|=n\Rightarrow N_{60}\ltimes (N_{179}\times N_{547})$};
-
-\end{tikzpicture}
-\end{block}
-
-
-\end{frame}
-
-\begin{frame}{Most Orders}
-
-\begin{center}
-\begin{tikzpicture}
-
-\fill[color=black!20,rounded corners] (-2.5,2) rectangle (1,-2);
-\fill[color=blue!20,rounded corners] (1,2) rectangle (7,-2);
-
-\node[circle,draw] (2) at (0,-1) {$p_1^{e_1}$};
-\node[circle,draw] (3) at (0,1) {$p_2^{e_2}$};
-\node[circle,draw] (5) at (-1.5,0) {$p_m^{e_{m}}$};
-\node[circle,draw] (179) at (3,1) {$p_{m+1}$};
-\node[circle,draw] (547) at (3,-1) {$p_{\ell}$};
-\node[circle,draw] (1949) at (4,0.5) {$p_{k}$};
-\node[circle,draw] (7893) at (5,-0.5) {$p_{j}$};
-
-
-
-\draw[->,thick] (2) to[bend right=30]  (3);
-\draw[->,thick] (2) to[bend left=30]  (5);
-\draw[->,thick] (2) to[bend right=20] (179);
-\draw[->,thick] (2) to[bend right=20] (547);
-
-\draw[->,thick] (5) to (-0.5,0) to[bend right=30] (3);
-\draw[->,thick] (-0.5,0) to[bend left=30] (2);
-
-\draw[->,thick] (3) to[bend left=30] (2);
-
-\draw[->,thick] (3) to[bend right=20] (7893);
-
-\visible<2->{
-\node[color=red] at (-1,2.25) {Hard Group Theory};
-\node[color=red] at (4,2.25) {Hard Number Theory};
-};
-
-\visible<3->{
-\node[color=csugreen] at (-1,-2.25) {Tiny Numbers};
-\node[color=csugreen] at (4,-2.25) {Cyclic Groups};
-\node at (2.5,-4) {$G=H\ltimes (\mathbb{Z}_{p_{m+1}}\times\cdots \times \mathbb{Z}_{p_{\ell}})$};
-};
-
-
-\end{tikzpicture}    
-\end{center}
-
-\end{frame}
-
-% \begin{frame}{}
-% \begin{itemize}
-%     \item Factor $n=ab$ where prime $p|n$, $p\geq\log \log n$ and not exceptional\footnote{primes strongly connected or involved in identifying a nonabelian simple group} then $p|b$;
-%     otherwise $p|a$.
-    
-%     \item Factor $G=H\ltimes_{\theta} B$ with prime divisors $p>\log \log n$ dividing
-%     $|B|$ but not $|H|$ (unless exceptional divisor of finite simple groups).
-%     Likewise decompose $\tilde{G}=\tilde{H}\ltimes_{\tilde{\theta}} \tilde{B}$.
-
-%     \item Brute-force decide $H\cong \tilde{H}$.
-%     \item Canonical isomorphism $B\cong \mathbb{Z}_b\cong \tilde{B}$ by Group Theory.
-%     \item Adjust $\theta$ to match $\tilde{\theta}$ if possible.
-
-% \end{itemize}
-% \end{frame}
+\section{Summary}
 
 \begin{frame}{Summary}
 
 \begin{block}{IsGroup nearly linear time}
+    From $\tilde{O}(n^4)$ to $\tilde{O}(n^2)$: 
     Promise-to-decision by transferring group to permutation model.
 \end{block}
 
 \begin{block}{GroupIso most orders nearly linear time}
+    From $n^{O(\log n)}$ to $\tilde{O}(n^2)$: 
     Split group into
     \begin{center} 
         hard group $\ltimes$ hard numbers 
