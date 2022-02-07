@@ -232,7 +232,7 @@ Where in this... \\
     Identity &: refl*evidence  = evidence
     \end{align*}
 
-    \pause
+    
     \item  \textbf{Symmetric}$\to$ \textbf{Inverse}
     \begin{align*}
     sym_{xy}&:(x\equiv y)\Rightarrow (y\equiv x)\\
@@ -330,12 +330,12 @@ Where in this... \\
 
 \fill[rounded corners,brown!20] (0,1) rectangle (11,0);
 \node[text width=2cm] at (9,0.5) {${\tiny DTIME}(2^{\log^c n})$};
-\node[text width=5cm] at (3,0.5) {\textbf{CayleyGroupIso}\\ Tarjan};
+\node[text width=5cm] at (3,0.5) {\textbf{TableGroupIso}\\ Tarjan};
 \node[text width=5cm] at (8,0.5) {\textbf{GraphIso}\\ Babai};
 
 \fill[rounded corners,csugreen!20] (0,-.5) rectangle (11,-1.5);
 \node[text width=2cm] at (9,-1) {${\tiny DTIME}(n^2\log^c n)$};
-\node[text width=7cm] at (4,-1) {\textbf{TableGroupIsoAbel}\\ Kivitha (nearly-linear in RAM model)};
+\node[text width=7cm] at (4,-1) {\textbf{TableGroupIsoAbel}\\ Kavitha (nearly-linear in RAM model)};
 
 \fill[rounded corners,csugreen!30] (0,-1.5) rectangle (11,-2.5);
 \node[text width=2cm] at (9,-2) {${\tiny DTIME}(n\log^c n)$};
@@ -544,7 +544,7 @@ Builds on Luks $2^{O(n)}$-hypergraph isomorphism, FOCS `99.
 
 \visible<2->{
 \node[fill=csugreen!20,text width=3cm] (data) at (0,5) {\textbf{Data Types}};
-\node[fill=blue!20,text width=2cm] (abel) at (0,3) {\textbf{(Nearly) Abelian}\\ Kivitha `07, LeGall};
+\node[fill=blue!20,text width=2cm] (abel) at (0,3) {\textbf{(Nearly) Abelian}\\ Kavitha `07, LeGall};
 \node[fill=blue!20,text width=3.5cm] (ss) at (0,0) {\textbf{Semisimplicty}\\ Babai-Codenotti-Qiao ICALP `11};
 \node[fill=red!20,text width=3cm] (AT) at (8,2) {\textbf{Adjoint Tensor}\\ Lewis-W. `12};
 
@@ -637,7 +637,7 @@ where $p_i|p_j^k-1$ for some $k\leq e_j$, \& symmetrically.
 \begin{block}{Erd\H{o}s-P\'{a}lfy, 1999}
     A group $G$ of order $n$ factors as 
 \[N_1\times \cdots \times N_{\ell},\] 
-$|N_i|=n_i$, order of connected components of $\Gamma(n)$.
+$|N_i|=n_i$, order of connected component $i$ in $\Gamma(n)$.
 \end{block}
 
 \pause
@@ -789,7 +789,7 @@ but on tables at least brute-force.
 At larger scales Turing Machine (TM) model better match to computations 
 that are communication bounded (typical in practice).
 
-RAM -> TM at most a quadratic blow-up.
+RAM $\to$ TM at most a quadratic blow-up.
 \begin{block}{Corollary}
 Nearly Quadratic-time $\tilde{O}(n^4)$ on multi-tape Turing Machine (TM).
 \end{block}
